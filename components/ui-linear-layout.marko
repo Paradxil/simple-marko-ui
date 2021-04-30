@@ -1,0 +1,12 @@
+style {
+    .ui-linear-layout {
+        display: flex;
+    }
+
+    .ui-linear-layout.spaced > * {
+        margin-right: 8px;
+    }
+}
+
+ui-element.ui-linear-layout ...input class={"spaced":input.spaced} style={flexDirection: input.vertical?'column':'row', alignItems: input.centered?"center":null}
+    <${input.renderBody}/>

@@ -1,0 +1,42 @@
+style {
+    :root {
+        --background-1: #fff;
+        --background-2: #444;
+        --accent-1: #f1f1f1;
+        --accent-2: #aaa;
+        --text-1: #444;
+        --text-2: #fff;
+        --rounded-radius: 4px;
+        --padding: 8px;
+    }
+
+    .ui-element.filled {
+        background-color: var(--background-2);
+        color: var(--text-2);
+    }
+
+    .ui-element.accent {
+        background-color: var(--accent-1);
+        color: var(--text-1);
+    }
+
+    .ui-element.rounded {
+        border-radius: var(--rounded-radius);
+    }
+
+    .ui-element.padded {
+        padding: var(--padding);
+    }
+}
+
+// Check for these keywords in the input and add them to the class list if present
+$ const keywords = ["filled", "rounded", "accent", "padded"];
+$ let classes = [input.class||null];
+$ for(let word of keywords) {
+    if(input[word]||false === true) {
+        classes.push(word);
+    }
+}
+
+div.ui-element class=classes id=input.id style=input.style
+    <${input.renderBody}/>
