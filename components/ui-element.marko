@@ -27,16 +27,26 @@ style {
     .ui-element.padded {
         padding: var(--padding);
     }
+
+    .ui-element.centered {
+        text-align: center;
+    }
+
+    .ui-element.fullwidth {
+        width: 100%;
+    }
 }
 
 // Check for these keywords in the input and add them to the class list if present
-$ const keywords = ["filled", "rounded", "accent", "padded"];
+$ const keywords = ["filled", "rounded", "accent", "padded", "centered", "fullwidth"];
 $ let classes = [input.class||null];
+$ classes.push("ui-element");
 $ for(let word of keywords) {
     if(input[word]||false === true) {
         classes.push(word);
     }
 }
 
-div.ui-element ...input class=classes id=input.id style=input.style on-click("handleClick")
+<${input.tag ? input.tag : 'div'} ...input class=classes id=input.id style=input.style on-click("handleClick")>
     <${input.renderBody}/>
+</>

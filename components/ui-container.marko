@@ -7,10 +7,18 @@ style {
         align-items: center;
         place-content: center;
     }
+
+    .ui-container.placecenter {
+        place-content: center;
+    }
+
+    .ui-container.aligncenter {
+        align-items: center;
+    }
 }
 
 // Check for these keywords in the input and add them to the class list if present
-$ const keywords = ["centered"];
+$ const keywords = ["centered", "placecenter", "aligncenter"];
 $ let classes = [input.class||null];
 $ for(let word of keywords) {
     if(input[word]||false === true) {

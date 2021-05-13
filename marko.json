@@ -9,6 +9,21 @@
         "@padded": "boolean",
         "@centered": "boolean",
         "@gutter": "number",
+        "@fullwidth": "boolean",
+        "@aligncenter": "boolean",
+        "@placecenter": "boolean",
+        "@elements <element>[]": {
+        }
+    },
+    "<ui-form>": {
+        "template": "./components/ui-form.marko",
+        "@vertical": "boolean",
+        "@data": "array",
+        "@filled": "boolean",
+        "@padded": "boolean",
+        "@centered": "boolean",
+        "@gutter": "number",
+        "@fullwidth": "boolean",
         "@elements <element>[]": {
         }
     }
