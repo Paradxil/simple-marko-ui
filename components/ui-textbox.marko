@@ -1,0 +1,15 @@
+class {
+    onCreate(input) {
+        this.state = {
+            value: input.value||null
+        }
+    }
+}
+
+style {
+    .ui-textbox {
+        padding: 10px;
+    }
+}
+
+input.ui-textbox ...input type="textbox" value=state.value

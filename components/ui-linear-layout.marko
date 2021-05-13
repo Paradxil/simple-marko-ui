@@ -1,12 +1,19 @@
 style {
-    .ui-linear-layout {
-        display: flex;
-    }
-
-    .ui-linear-layout.spaced > * {
-        margin-right: 8px;
+    .ui-container > *:first-child {
+        margin-top: 0px !important;
+        margin-left: 0px !important;
     }
 }
 
-ui-element.ui-linear-layout ...input class={"spaced":input.spaced} style={flexDirection: input.vertical?'column':'row', alignItems: input.centered?"center":null}
-    <${input.renderBody}/>
+$ let gutter = input.gutter||"8px";
+
+ui-container.ui-linear-layout ...input style={
+    flexDirection: input.vertical?'column':'row', 
+    alignItems: input.centered?"center":null
+}
+    for|element| of=input.elements||[]
+        ui-element.ui-linear-layout-child style={
+            marginLeft: input.vertical?null:gutter,
+            marginTop: input.vertical?gutter:null
+        }
+            <${element.renderBody}/>

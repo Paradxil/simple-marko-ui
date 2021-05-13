@@ -1,2 +1,22 @@
-ui-element.ui-container ...input padded class=input.class id=input.id
+style {
+    .ui-container {
+        display: flex;
+    }
+
+    .ui-container.centered {
+        align-items: center;
+        place-content: center;
+    }
+}
+
+// Check for these keywords in the input and add them to the class list if present
+$ const keywords = ["centered"];
+$ let classes = [input.class||null];
+$ for(let word of keywords) {
+    if(input[word]||false === true) {
+        classes.push(word);
+    }
+}
+
+ui-element.ui-container ...input class=classes id=input.id on-click("handleClick")
     <${input.renderBody}/>

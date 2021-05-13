@@ -1,3 +1,15 @@
 {
-    "tags-dir": "./components"
+    "taglib-id": "simple-marko-ui",
+    "tags-dir": "./components",
+    "<ui-linear-layout>": {
+        "template": "./components/ui-linear-layout.marko",
+        "@vertical": "boolean",
+        "@data": "array",
+        "@filled": "boolean",
+        "@padded": "boolean",
+        "@centered": "boolean",
+        "@gutter": "number",
+        "@elements <element>[]": {
+        }
+    }
 }
