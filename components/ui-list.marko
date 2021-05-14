@@ -1,0 +1,12 @@
+style {
+    .ui-list-item.selected {
+        background-color: var(--accent-2);
+    }
+}
+
+div.ui-list
+    ui-linear-layout ...input vertical on-click("handleClick") gutter="0px"
+        for|item, index| of=input.items||[]
+            @element
+                div.ui-list-item class={'selected': input.selected===index} on-click("handleItemClick", item, index)
+                    <${item.renderBody}/>
