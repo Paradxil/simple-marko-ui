@@ -1,6 +1,8 @@
 style {
     .ui-container {
         display: flex;
+        flex-direction: column;
+        flex: 1;
     }
 
     .ui-container.centered {
@@ -15,10 +17,14 @@ style {
     .ui-container.aligncenter {
         align-items: center;
     }
+
+    .ui-container.fillspace {
+        flex: 1;
+    }
 }
 
 // Check for these keywords in the input and add them to the class list if present
-$ const keywords = ["centered", "placecenter", "aligncenter"];
+$ const keywords = ["centered", "placecenter", "aligncenter", "fillspace"];
 $ let classes = [input.class||null];
 $ for(let word of keywords) {
     if(input[word]||false === true) {
