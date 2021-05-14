@@ -6,8 +6,19 @@ style {
     .ui-button:hover {
         background-color: var(--accent-2);
     }
+
+    .ui-button-content {
+        display: flex;
+    }
+
+    .ui-button-content > .ui-icon {
+        margin-right: 8px;
+    }
 }
 
 ui-container.ui-button ...input padded on-click("handleClick")
-    a href=input.href||input.src||null
+    a.ui-button-content href=input.href||input.src||null
+        if(input.icon)
+            ui-icon icon=input.icon
         ui-text -- ${input.text||""}
+        <${input.renderBody}/>
