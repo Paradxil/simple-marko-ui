@@ -4,7 +4,7 @@
   "description": "A simple library of UI components for MarkoJS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "demo": "npx marko-serve ./demo/index.marko"
   },
   "keywords": [
     "marko",
@@ -16,6 +16,8 @@
   "author": "Hunter Stratton",
   "license": "MIT",
   "dependencies": {
+    "@marko/serve": "^4.2.1",
+    "feather-marko": "^0.0.3",
     "marko": "^5.9.0"
   }
 }

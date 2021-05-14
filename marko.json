@@ -26,5 +26,18 @@
         "@fullwidth": "boolean",
         "@elements <element>[]": {
         }
+    },
+    "<ui-pageview>": {
+        "template": "./components/ui-pageview.marko",
+        "@active": "number",
+        "@page": "number",
+        "@pages <page>[]": {
+        }
+    },
+    "<ui-list>": {
+        "template": "./components/ui-list.marko",
+        "@selected": "number",
+        "@items <item>[]": {
+        }
     }
 }
