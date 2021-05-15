@@ -37,4 +37,5 @@ ui-container.ui-sidebar fillspace class={'collapsed': state.collapsed===true}
                     @item
                         ui-button text=!state.collapsed?item.text:'' icon=item.icon
         @element
-            ui-button.sidebar-collapse-button icon=state.collapsed?'chevron-right':'chevron-left' on-click("toggleCollapsed")
+            if(input.collapsible)
+                ui-button.sidebar-collapse-button icon=state.collapsed?'chevron-right':'chevron-left' on-click("toggleCollapsed")

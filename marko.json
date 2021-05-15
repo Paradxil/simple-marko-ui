@@ -46,6 +46,7 @@
         "template": "./components/ui-sidebar.marko",
         "@selected": "number",
         "@collapsed": "boolean",
+        "@collapsible": "boolean",
         "@items <item>[]": {
         }
     }
