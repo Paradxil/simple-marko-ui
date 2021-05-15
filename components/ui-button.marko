@@ -11,14 +11,15 @@ style {
         display: flex;
     }
 
-    .ui-button-content > .ui-icon {
+    .ui-button-content > .ui-icon:not(:last-child) {
         margin-right: 8px;
     }
 }
 
-ui-container.ui-button ...input padded on-click("handleClick")
+ui-container.ui-button ...input padded on-click("handleClick") class=input.class id=input.id
     a.ui-button-content href=input.href||input.src||null
         if(input.icon)
             ui-icon icon=input.icon
-        ui-text -- ${input.text||""}
+        if(input.text)
+            ui-text -- ${input.text}
         <${input.renderBody}/>

@@ -1,9 +1,40 @@
+class {
+    onCreate(input) {
+        this.state = {
+            collapsed: input.collapsed
+        }
+    }
+
+    handleItemClick(event) {
+        this.emit("itemclick", event);
+    }
+
+    toggleCollapsed(event) {
+        this.state.collapsed = !this.state.collapsed;
+    }
+}
+
 style {
     .ui-sidebar {
         background-color: var(--accent-1);
         min-width: 300px;
     }
+
+    .ui-sidebar.collapsed {
+        min-width: unset;
+    }
+
+    .sidebar-collapse-button {
+        height: 100%;
+    }
 }
 
-ui-container.ui-sidebar fillspace
-    <${input.renderBody}/>
+ui-container.ui-sidebar fillspace class={'collapsed': state.collapsed===true}
+    ui-linear-layout gutter="0px" fillspace
+        @element fillspace
+            ui-list selected=null||input.selected on-itemclick("handleItemClick")
+                for|item, index| of=input.items||[]
+                    @item
+                        ui-button text=!state.collapsed?item.text:'' icon=item.icon
+        @element
+            ui-button.sidebar-collapse-button icon=state.collapsed?'chevron-right':'chevron-left' on-click("toggleCollapsed")

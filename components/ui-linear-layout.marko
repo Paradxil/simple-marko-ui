@@ -17,7 +17,7 @@ ui-container.ui-linear-layout ...input style={
     alignItems: input.centered?"center":null
 }
     for|element| of=input.elements||[]
-        ui-element.ui-linear-layout-child style={
+        ui-container.ui-linear-layout-child ...element style={
             marginLeft: input.vertical?null:gutter,
             marginTop: input.vertical?gutter:null
         }

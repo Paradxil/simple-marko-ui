@@ -5,26 +5,25 @@ class {
         };
     }
     onItemSelected(event) {
-        console.log(event);
         this.state.currentPage = event.index;
     } 
 }
 
-ui-linear-layout gutter="0px"
+ui-linear-layout gutter="0px" fillspace
     @element
-        ui-sidebar 
-            ui-list on-itemclick("onItemSelected") selected=state.currentPage
-                @item
-                    ui-button text="Button" icon="square"
-                @item
-                    ui-button text="Form" icon="layout"
-                @item
-                    ui-button text="List" icon="list"
-    @element
-        ui-pageview page=state.currentPage
-            @page
-                ui-text -- BUTTON
-            @page
-                ui-text -- FORM
-            @page
-                ui-text -- LIST
+        ui-sidebar on-itemclick("onItemSelected") selected=state.currentPage
+            @item text="Overview" icon="box"
+            @item text="Button" icon="square"
+            @item text="Form" icon="layout"
+            @item text="List" icon="list"
+    @element fillspace
+        ui-container padded aligncenter fillspace
+            ui-pageview page=state.currentPage
+                @page
+                    ui-heading -- OVERVIEW
+                @page
+                    ui-heading -- BUTTON
+                @page
+                    ui-heading -- FORM
+                @page
+                    ui-heading -- LIST

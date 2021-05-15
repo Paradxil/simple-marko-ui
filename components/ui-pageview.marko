@@ -1,3 +1,3 @@
 div.ui-pageview
-    if(input.pages)
-        <${input.pages[input.page||input.active||0].renderBody||""}/>
+    if(input.pages && input.page < input.pages.length)
+        <${input.pages[input.page||0].renderBody||""}/>

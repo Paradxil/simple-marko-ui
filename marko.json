@@ -3,6 +3,7 @@
     "tags-dir": "./components",
     "<ui-linear-layout>": {
         "template": "./components/ui-linear-layout.marko",
+        "@class": "string",
         "@vertical": "boolean",
         "@data": "array",
         "@filled": "boolean",
@@ -12,6 +13,7 @@
         "@fullwidth": "boolean",
         "@aligncenter": "boolean",
         "@placecenter": "boolean",
+        "@fillspace": "boolean",
         "@elements <element>[]": {
         }
     },
@@ -37,6 +39,13 @@
     "<ui-list>": {
         "template": "./components/ui-list.marko",
         "@selected": "number",
+        "@items <item>[]": {
+        }
+    },
+    "<ui-sidebar>": {
+        "template": "./components/ui-sidebar.marko",
+        "@selected": "number",
+        "@collapsed": "boolean",
         "@items <item>[]": {
         }
     }
