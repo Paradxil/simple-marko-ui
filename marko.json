@@ -8,12 +8,16 @@
         "@data": "array",
         "@filled": "boolean",
         "@padded": "boolean",
+        "@paddedwide": "boolean",
+        "@paddednarrow": "boolean",
         "@centered": "boolean",
         "@gutter": "number",
         "@fullwidth": "boolean",
         "@aligncenter": "boolean",
         "@placecenter": "boolean",
         "@fillspace": "boolean",
+        "@rounded": "boolean",
+        "@accent": "boolean",
         "@elements <element>[]": {
         }
     },
@@ -23,6 +27,8 @@
         "@data": "array",
         "@filled": "boolean",
         "@padded": "boolean",
+        "@paddedwide": "boolean",
+        "@paddednarrow": "boolean",
         "@centered": "boolean",
         "@gutter": "number",
         "@fullwidth": "boolean",
@@ -39,6 +45,12 @@
     "<ui-list>": {
         "template": "./components/ui-list.marko",
         "@selected": "number",
+        "@rounded": "boolean",
+        "@accent": "boolean",
+        "@gutter": "number",
+        "@padded": "boolean",
+        "@paddedwide": "boolean",
+        "@paddednarrow": "boolean",
         "@items <item>[]": {
         }
     },

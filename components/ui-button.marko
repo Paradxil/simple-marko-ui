@@ -1,10 +1,12 @@
 style {
     .ui-button {
         cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
     }
 
     .ui-button:hover {
         background-color: var(--accent-2);
+        color: var(--text-2);
     }
 
     .ui-button-content {
@@ -14,6 +16,10 @@ style {
     .ui-button-content > .ui-icon:not(:last-child) {
         margin-right: 8px;
     }
+
+    .ui-button-content > .ui-icon:last-child:not(:first-child) {
+        margin-left: 8px;
+    }
 }
 
 ui-container.ui-button ...input padded on-click("handleClick") class=input.class id=input.id
@@ -22,4 +28,6 @@ ui-container.ui-button ...input padded on-click("handleClick") class=input.class
             ui-icon icon=input.icon
         if(input.text)
             ui-text -- ${input.text}
+        if(input.trailingicon)
+            ui-icon icon=input.trailingicon
         <${input.renderBody}/>

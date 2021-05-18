@@ -8,12 +8,16 @@ style {
         --text-2: #fff;
         --rounded-radius: 4px;
         --padding: 8px;
+        --padding-narrow: 4px;
+        --padding-wide: 32px;
     }
 
     body {
         display: flex;
         min-height: 100vh;
         width: 100%;
+        background-color: var(--background-1);
+        color: var(--text-1);
     }
 
     * {
@@ -40,8 +44,24 @@ style {
         padding: var(--padding);
     }
 
+    .ui-element.paddedwide {
+        padding: var(--padding-wide);
+    }
+
+    .ui-element.paddednarrow {
+        padding: var(--padding-narrow);
+    }
+
     .ui-element.centered {
         text-align: center;
+    }
+
+    .ui-element.alignleft {
+        text-align: left;
+    }
+
+    .ui-element.alignright {
+        text-align: right;
     }
 
     .ui-element.fullwidth {
@@ -50,7 +70,7 @@ style {
 }
 
 // Check for these keywords in the input and add them to the class list if present
-$ const keywords = ["filled", "rounded", "accent", "padded", "centered", "fullwidth"];
+$ const keywords = ["filled", "rounded", "accent", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow"];
 $ let classes = [input.class||null];
 $ classes.push("ui-element");
 $ for(let word of keywords) {
@@ -59,6 +79,6 @@ $ for(let word of keywords) {
     }
 }
 
-<${input.tag ? input.tag : 'div'} ...input class=classes id=input.id style=input.style on-click("handleClick")>
+<${input.tag ? input.tag : 'div'} ...input class=classes id=input.id style=input.style on-click("handleClick") on-input("handleInput")>
     <${input.renderBody}/>
 </>

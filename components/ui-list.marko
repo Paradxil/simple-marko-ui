@@ -5,8 +5,8 @@ style {
 }
 
 div.ui-list
-    ui-linear-layout ...input vertical on-click("handleClick") gutter="0px"
+    ui-linear-layout ...input vertical on-click("handleClick") gutter=input.gutter||input.spacing||"0px"
         for|item, index| of=input.items||[]
-            @element
+            @element ...item
                 div.ui-list-item class={'selected': input.selected===index} on-click("handleItemClick", item, index)
                     <${item.renderBody}/>

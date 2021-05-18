@@ -1,9 +1,1 @@
-class {
-    onCreate(input) {
-        this.state = {
-            value: input.value||null
-        }
-    }
-}
-
-ui-element.ui-textbox ...input tag="input" type="textbox" value=state.value padded fullwidth
+ui-element.ui-textbox ...input tag="input" type=input.password?"password":"textbox" value=state.value padded fullwidth on-input("pushInput") on-click("handleClick")
