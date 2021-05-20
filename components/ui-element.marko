@@ -6,10 +6,18 @@ style {
         --accent-2: #aaa;
         --text-1: #444;
         --text-2: #fff;
+        --border: #444;
         --rounded-radius: 4px;
         --padding: 8px;
         --padding-narrow: 4px;
         --padding-wide: 32px;
+        --font-size: 1em;
+        --font-size-h1: 2em;
+        --font-size-h2: 1.5em;
+        --font-size-h3: 1.1em;
+        --font-size-h4: 1em;
+        --font-size-h5: 1em;
+        --font-size-h6: 0.9em;
     }
 
     body {
@@ -24,6 +32,31 @@ style {
         padding: 0px;
         margin: 0px;
         box-sizing: border-box;
+        font-size: var(--font-size);
+    }
+
+    h1 {
+        font-size: var(--font-size-h1);
+    }
+
+    h2 {
+        font-size: var(--font-size-h2);
+    }
+
+    h3 {
+        font-size: var(--font-size-h3);
+    }
+
+    h4 {
+        font-size: var(--font-size-h4);
+    }
+
+    h5 {
+        font-size: var(--font-size-h5);
+    }
+
+    h6 {
+        font-size: var(--font-size-h6);
     }
 
     .ui-element.filled {
@@ -67,10 +100,31 @@ style {
     .ui-element.fullwidth {
         width: 100%;
     }
+
+    .ui-element.hidden {
+        display: none;
+    }
+
+    .ui-element.raised {
+        box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
+    }
+
+    .ui-element.outlined {
+        border: 1px solid var(--border);
+    }
+
+    .ui-element.fullscreen {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background-color: rgba(0,0,0,0.25);
+    }
 }
 
 // Check for these keywords in the input and add them to the class list if present
-$ const keywords = ["filled", "rounded", "accent", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow"];
+$ const keywords = ["filled", "rounded", "accent", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow", "hidden", "raised", "outlined", "fullscreen"];
 $ let classes = [input.class||null];
 $ classes.push("ui-element");
 $ for(let word of keywords) {
@@ -79,6 +133,8 @@ $ for(let word of keywords) {
     }
 }
 
-<${input.tag ? input.tag : 'div'} ...input class=classes id=input.id style=input.style on-click("handleClick") on-input("handleInput")>
+$ let style = [input.style, input.theme]
+
+<${input.tag ? input.tag : 'div'} ...input class=classes id=input.id style=style on-click("handleClick") on-input("handleInput")>
     <${input.renderBody}/>
 </>

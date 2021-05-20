@@ -1,0 +1,33 @@
+style {
+    .ui-color-select-wrapper {
+        position: relative;
+    }
+
+    .ui-color-preview {
+        cursor: pointer;
+    }
+
+    .ui-color-select {
+        position: fixed;
+        width: 200px;
+        margin: 5% auto; /* Will not center vertically and won't work in IE6/7. */
+        left: 0;
+        right: 0;
+        background-color: #fff;
+    }
+}
+
+$ let colorsLists = input.colors||[['#fff', '#aaa', '#888', '#444', '#000']]
+
+div.ui-color-select-wrapper
+    ui-element.ui-color-preview ...input padded outlined filled theme={'--background-2': state.color, '--background-1': state.color} on-click("toggleDialogue")
+    ui-container fullscreen hidden=!state.showDialogue on-click("toggleDialogue")
+    ui-card.ui-color-select ...input raised hidden=!state.showDialogue
+        @header title="Color Select" heading=5
+        ui-linear-layout vertical centered padded
+            for|colors| of=colorsLists
+                @element
+                    ui-linear-layout centered
+                        for|color| of=colors
+                            @element
+                                ui-element.ui-color-preview padded outlined filled theme={'--background-2': color, '--background-1': color} on-click("selectColor", color)

@@ -1,0 +1,41 @@
+import feather from 'feather-icons';
+
+style {
+    .ui-icon-select {
+        position: relative;
+    }
+
+    .ui-icon-dialogue {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0px;
+        width: 200px;
+        max-height: 300px;
+        overflow-y: auto;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
+    }
+
+    .ui-icon-dialogue.visible {
+        display: initial;
+    }
+
+    .icon-search {
+        position: sticky;
+        top: -8px;
+        padding: 8px 0px;
+    }
+}
+
+$ let iconlist = Object.keys(feather.icons);
+
+ui-element.ui-icon-select ...input
+    ui-button.ui-icon-toggle icon=state.icon accent=!state.showDialogue rounded=input.rounded on-click("toggleIconDialogue")
+    ui-linear-layout.ui-icon-dialogue vertical padded class={"visible": state.showDialogue} ...input
+        @element class="icon-search" filled
+            ui-textbox placeholder="Search" on-input("setFilter")
+        @element
+            ui-linear-layout vertical
+                for|icon| of=iconlist.filter((icon)=>{return icon.search(state.filter)>-1||state.filter.length===0})
+                    @element key=icon 
+                        ui-button icon=icon text=icon accent=input.filled rounded=input.rounded

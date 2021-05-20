@@ -3,7 +3,8 @@
     "tags-dir": "./components",
     "<ui-linear-layout>": {
         "template": "./components/ui-linear-layout.marko",
-        "@class": "string",
+        "@class": "any",
+        "@id": "any",
         "@vertical": "boolean",
         "@data": "array",
         "@filled": "boolean",
@@ -18,6 +19,8 @@
         "@fillspace": "boolean",
         "@rounded": "boolean",
         "@accent": "boolean",
+        "@style": "any",
+        "@theme": "",
         "@elements <element>[]": {
         }
     },
