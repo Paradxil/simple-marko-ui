@@ -1,2 +1,10 @@
-ui-element.ui-button tag="button" type="submit" ...input padded fullwidth on-click(input.preventdefault?"preventHandleClick":"handleClick")
+style {
+    .ui-submit {
+        outline: none;
+        border:1px solid #444;
+        border-radius: var(--rounded-radius);
+    }
+}
+
+ui-element.ui-button.ui-submit tag="button" type="submit" ...input padded fullwidth on-click(input.preventdefault?"preventHandleClick":"handleClick")
     <${input.renderBody}/>

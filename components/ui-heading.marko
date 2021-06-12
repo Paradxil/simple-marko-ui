@@ -1,2 +1,8 @@
-ui-text tag="h"+(input.heading||2) ...input
+style {
+    .ui-heading {
+        font-family: var(--header-font) !important;
+    }
+}
+
+ui-text.ui-heading tag="h"+(input.heading||2) ...input
     <${input.renderBody}/>

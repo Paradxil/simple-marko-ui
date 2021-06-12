@@ -1,7 +1,16 @@
 {
     "taglib-id": "simple-marko-ui",
     "tags-dir": "./components",
+    "<ui-container>": {
+        "html": true,
+        "template": "./components/ui-container.marko"
+    },
+    "<ui-element>": {
+        "html": true,
+        "template": "./components/ui-element.marko"
+    },
     "<ui-linear-layout>": {
+        "html": true,
         "template": "./components/ui-linear-layout.marko",
         "@class": "any",
         "@id": "any",
