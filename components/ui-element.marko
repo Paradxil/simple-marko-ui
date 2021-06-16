@@ -115,7 +115,7 @@ style {
     }
 
     .ui-element.raised {
-        box-shadow: 0px 0px 3px rgba(0,0,0,0.25);
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
     }
 
     .ui-element.outlined {
@@ -132,18 +132,8 @@ style {
     }
 }
 
-// Check for these keywords in the input and add them to the class list if present
-$ const keywords = ["filled", "rounded", "accent", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow", "hidden", "raised", "outlined", "fullscreen"];
-$ let classes = [input.class||null];
-$ classes.push("ui-element");
-$ for(let word of keywords) {
-    if(input[word]||false === true) {
-        classes.push(word);
-    }
-}
-
 $ let style = [input.style, input.theme]
 
-<${input.tag ? input.tag : 'div'} ...input class=classes id=input.id style=style on-click("handleClick") on-input("handleInput")>
+<${input.tag ? input.tag : 'div'} ...input class=state.classes id=input.id style=style on-click("handleClick") on-input("handleInput")>
     <${input.renderBody}/>
 </>

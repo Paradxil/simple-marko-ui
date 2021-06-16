@@ -6,8 +6,8 @@ style {
 
 ui-linear-layout.ui-card vertical ...input class=input.class id=input.id on-click("handleClick") gutter="0px"
     if(input.header)
-        @element
-            ui-linear-layout vertical gutter="0px" padded
+        @element ...input.header
+            ui-linear-layout vertical gutter="0px"
                 if(input.header.title)
                     @element
                         ui-heading heading=input.header.heading||2 -- ${input.header.title}
@@ -18,5 +18,5 @@ ui-linear-layout.ui-card vertical ...input class=input.class id=input.id on-clic
                     @element
                         <${input.header.renderBody}/>
     if(input.renderBody)
-        @element padded
+        @element
             <${input.renderBody}/>

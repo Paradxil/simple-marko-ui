@@ -1,0 +1,90 @@
+style {
+    .ui-date-select-wrapper {
+        position: relative;
+        transition: background 0.25s;
+    }
+
+    .ui-date-select-wrapper:hover {
+        background-color: var(--background-2);
+    }
+
+    .ui-date-preview {
+        cursor: pointer;
+    }
+
+    .ui-date-select {
+        position: fixed;
+        margin: 20% auto; /* Will not center vertically and won't work in IE6/7. */
+        left: 0;
+        right: 0;
+        top: 0px;
+        background-color: #fff;
+        z-index: 100;
+        max-width: 325px;
+    }
+
+    .day, .day-header {
+        width: 2em;
+    }
+
+    .day:hover {
+        cursor: pointer;
+        background-color: var(--background-2);
+    }
+
+    .tab-button {
+        border-top-left-radius: var(--rounded-radius);
+        border-top-right-radius: var(--rounded-radius);
+    }
+}
+
+$ const days = ["S", "M", "T", "W", "Th", "F", "Sa"];
+$ const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+$ let firstDate = new Date(state.curDate.getFullYear(),state.curDate.getMonth(),1);
+$ let firstOffset = firstDate.getDay();
+$ let lastDate = new Date(state.curDate.getFullYear(),state.curDate.getMonth()+1,0);
+$ let numDays = lastDate.getDate();
+
+ui-element.ui-date-select-wrapper ...input padded outlined 
+    ui-date.ui-date-preview milliseconds=state.value on-click("togglePopup")
+    ui-container fullscreen hidden=!state.popup on-click("togglePopup")
+    ui-card.ui-date-select ...input raised hidden=!state.popup
+        @header title="Date Select" heading=5 padded filled
+            ui-heading padded
+                ui-date milliseconds=state.value
+        ui-linear-layout.tab-buttons filled
+            @element fillspace
+                ui-button.tab-button icon="calendar" filled accent=state.tab==="date" on-click("changeTab", "date")
+            @element fillspace
+                ui-button.tab-button icon="clock" filled accent=state.tab==="time" on-click("changeTab", "time")
+        if(state.tab==="date")
+            ui-linear-layout vertical centered padded
+                @element
+                    ui-linear-layout
+                        @element
+                            ui-button icon="chevron-left" rounded on-click("changeMonth",{value: state.curDate.getMonth()-1})
+                        @element
+                            ui-select value=state.curDate.getMonth().toString() options=months.map((m, i)=>{return {value:i, text:m};}) on-input("changeMonth")
+                        @element
+                            ui-select value=state.curDate.getFullYear() options=Array.from({length: new Date().getFullYear()-1970+1}, (_, i) => {return {value: i + 1970 + 1}}).reverse() on-input("changeYear")
+                        @element
+                            ui-button icon="chevron-right" rounded on-click("changeMonth",{value: state.curDate.getMonth()+1})
+                @element fillspace
+                    ui-linear-layout fillspace
+                        for|day| of=days
+                            @element class="day-header" aligncenter
+                                ui-heading heading=3 -- ${day}
+                    for|week| from=0 to=5
+                        ui-spacer padding="4px"
+                        ui-linear-layout fillspace
+                            for|d| from=1 to=7
+                                $ let day = week * 7 + d - firstOffset;
+                                if(day <= numDays && day > 0)
+                                    @element class="day" aligncenter rounded filled=(state.curDate.getDate()===day&&state.curDate.getFullYear()===state.date.getFullYear()&&state.curDate.getMonth()===state.date.getMonth())
+                                        ui-element on-click("setDate", state.curDate.getMonth(), day, state.curDate.getFullYear())
+                                            ui-text padded -- ${day}
+                                else
+                                    @element class="day-header"
+                                        ui-text padded
+        else-if(state.tab==="time")

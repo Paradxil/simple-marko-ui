@@ -12,7 +12,7 @@ style {
 
 $ let gutter = input.gutter||"8px";
 
-ui-container.ui-linear-layout ...input class=input.class id=input.id style={
+ui-container.ui-linear-layout ...input on-click("handleClick") class=input.class id=input.id style={
     flexDirection: input.vertical?'column':'row', 
     alignItems: input.centered?"center":null
 }
