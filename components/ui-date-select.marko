@@ -36,6 +36,78 @@ style {
         border-top-left-radius: var(--rounded-radius);
         border-top-right-radius: var(--rounded-radius);
     }
+
+    .clock-wrapper {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        position: relative;
+        width: 250px;
+        min-height: 250px;
+        padding: 25px;
+    }
+
+    .clock-minute {
+        top: calc(1em - 6px);
+        left: calc(50% - 6px);
+        position: absolute;
+        transform-origin: 50% calc(125px - 1em + 6px);
+        width: 6px;
+        height: 6px;
+        border-radius: 10px !important;
+        text-align: center;
+    }
+
+    .clock-minute::before {
+        content: " ";
+        width: 1px;
+        position: absolute;
+        height: 1px;
+        left: 50%;
+        top: 50%;
+        display: block;
+        background-color: #444;
+    }
+
+    .clock-number {
+        top:0px;
+        left:calc(50% - 1em);
+        position: absolute;
+        transform-origin: 50% 125px;
+        width: 2em;
+        height: 2em;
+        border-radius: 1em !important;
+        text-align: center;
+    }
+
+    .clock-number > a {
+        place-content: center;
+    }
+
+    .clock-number-inner {
+        top:2em;
+        transform-origin: 50% calc(125px - 2em);
+    }
+
+    .clock-center {
+        width: 14px;
+        height: 14px;
+        border-radius: 7px;
+        background-color: var(--background-2);
+        position: absolute;
+        top: calc(50% - 7px);
+        left: calc(50% - 7px);
+    }
+
+    .clock-hand {
+        width: 4px;
+        height: calc(124px - 2em);
+        border-radius: 2px;
+        position: absolute;
+        top: 2em;
+        left: calc(50% - 2px);
+        transform-origin: 50% calc(125px - 2em);
+        background-color: var( --background-2);
+    }
 }
 
 $ const days = ["S", "M", "T", "W", "Th", "F", "Sa"];
@@ -53,7 +125,7 @@ ui-element.ui-date-select-wrapper ...input padded outlined
         @header title="Date Select" heading=5 padded filled
             ui-heading padded
                 ui-date milliseconds=state.value
-        ui-linear-layout.tab-buttons filled
+        ui-linear-layout.tab-buttons filled fillspace fullwidth
             @element fillspace
                 ui-button.tab-button icon="calendar" filled accent=state.tab==="date" on-click("changeTab", "date")
             @element fillspace
@@ -88,3 +160,13 @@ ui-element.ui-date-select-wrapper ...input padded outlined
                                     @element class="day-header"
                                         ui-text padded
         else-if(state.tab==="time")
+            ui-element.clock-wrapper padded fullwidth fillspace centered
+                div.clock-center
+                $ let r = (state.setHour?state.curDate.getHours():state.curDate.getMinutes()) * (state.setHour?360/12:360/60);
+                div.clock-hand style={transform: 'rotate('+r+'deg)'}
+                if(state.setHour)
+                    for|i| from=-1 to=23
+                        ui-button.clock-number class={"clock-number-inner": i>11} text=i.toString() filled=state.curDate.getHours()===i rounded style={transform: 'rotate('+(i * 360/12)+'deg)'} on-click("changeHour", i)
+                else
+                    for|i| from=-1 to=59
+                        ui-button.clock-minute class={"clock-number": i%5===0} text=(i%5===0?i.toString():"") filled=state.curDate.getMinutes()===i rounded style={transform: 'rotate('+(i * 360/60)+'deg)'} on-click("changeMinute", i)

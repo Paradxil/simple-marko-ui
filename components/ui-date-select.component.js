@@ -7,8 +7,13 @@ class Component {
             date: new Date(input.milliseconds),
             popup: false,
             curDate: new Date(input.milliseconds),
-            tab: "date"
+            tab: "date",
+            setHour: true
         };
+    }
+
+    emitEvent() {
+        this.emit("input", {value: this.state.value, date: this.state.date});
     }
 
     onInput(input) {
@@ -27,6 +32,7 @@ class Component {
         this.state.value = this.state.date.getTime();
         this.state.curDate = this.state.date;
         this.setStateDirty("curDate");
+        this.emitEvent();
     }
 
     changeMonth(event) {
@@ -50,6 +56,25 @@ class Component {
     changeYear(event) {
         this.state.curDate.setFullYear(parseInt(event.value));
         this.setStateDirty("curDate");
+    }
+
+    changeHour(hour) {
+        this.state.curDate.setHours(hour);
+        this.state.date.setHours(hour);
+        this.state.value = this.state.date.getTime();
+        this.setStateDirty("curDate");
+        this.setStateDirty("date");
+        this.state.setHour = false;
+        this.emitEvent();
+    }
+
+    changeMinute(minute) {
+        this.state.curDate.setMinutes(minute);
+        this.state.date.setMinutes(minute);
+        this.state.value = this.state.date.getTime();
+        this.setStateDirty("curDate");
+        this.state.setHour = true;
+        this.emitEvent();
     }
 
     changeTab(tab) {
