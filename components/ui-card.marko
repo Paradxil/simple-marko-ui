@@ -6,17 +6,17 @@ style {
 
 ui-linear-layout.ui-card vertical ...input class=input.class id=input.id on-click("handleClick") gutter="0px"
     if(input.header)
-        @element ...input.header
-            ui-linear-layout vertical gutter="0px"
+        @element ...input.header fillspace fullwidth
+            ui-linear-layout vertical gutter="0px" fillspace fullwidth
                 if(input.header.title)
-                    @element
+                    @element fillspace fullwidth
                         ui-heading heading=input.header.heading||2 -- ${input.header.title}
                 if(input.header.subtitle)
-                    @element
+                    @element fillspace fullwidth
                         ui-heading heading=input.header.subheading||5 -- ${input.header.subtitle}
                 if(input.header.renderBody)
-                    @element
+                    @element fillspace fullwidth
                         <${input.header.renderBody}/>
     if(input.renderBody)
-        @element
+        @element fillspace
             <${input.renderBody}/>
