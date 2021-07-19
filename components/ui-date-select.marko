@@ -108,6 +108,10 @@ style {
         transform-origin: 50% calc(125px - 2em);
         background-color: var( --background-2);
     }
+
+    .ui-date-fullscreen-overlay {
+        z-index: 100;
+    }
 }
 
 $ const days = ["S", "M", "T", "W", "Th", "F", "Sa"];
@@ -119,17 +123,19 @@ $ let lastDate = new Date(state.curDate.getFullYear(),state.curDate.getMonth()+1
 $ let numDays = lastDate.getDate();
 
 ui-element.ui-date-select-wrapper ...input padded outlined 
-    ui-date.ui-date-preview milliseconds=state.value on-click("togglePopup")
-    ui-container fullscreen hidden=!state.popup on-click("togglePopup")
+    ui-date.ui-date-preview time=state.includeTime date=state.includeDate milliseconds=state.value on-click("togglePopup")
+    ui-container.ui-date-fullscreen-overlay fullscreen hidden=!state.popup on-click("togglePopup")
     ui-card.ui-date-select ...input raised hidden=!state.popup
-        @header title="Date Select" heading=5 padded filled
+        @header title="Date Select" heading=5 padded filled alignleft
             ui-heading padded
-                ui-date milliseconds=state.value
+                ui-date time=state.includeTime date=state.includeDate milliseconds=state.value
         ui-linear-layout.tab-buttons filled fillspace fullwidth
-            @element fillspace
-                ui-button.tab-button icon="calendar" filled accent=state.tab==="date" on-click("changeTab", "date")
-            @element fillspace
-                ui-button.tab-button icon="clock" filled accent=state.tab==="time" on-click("changeTab", "time")
+            if(state.includeDate)
+                @element fillspace
+                    ui-button.tab-button icon="calendar" filled accent=state.tab==="date" on-click("changeTab", "date")
+            if(state.includeTime)
+                @element fillspace
+                    ui-button.tab-button icon="clock" filled accent=state.tab==="time" on-click("changeTab", "time")
         if(state.tab==="date")
             ui-linear-layout vertical centered padded
                 @element

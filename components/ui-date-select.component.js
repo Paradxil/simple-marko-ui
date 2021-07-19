@@ -8,7 +8,9 @@ class Component {
             popup: false,
             curDate: new Date(input.milliseconds),
             tab: "date",
-            setHour: true
+            setHour: true,
+            includeDate: input.showdate!=null?input.showdate:true,
+            includeTime: input.showtime!=null?input.showtime:true
         };
     }
 
