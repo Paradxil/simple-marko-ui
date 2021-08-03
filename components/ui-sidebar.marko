@@ -5,6 +5,10 @@ class {
         }
     }
 
+    onInput(input) {
+        this.state.collapsed = input.collapsed;
+    }
+
     handleItemClick(event) {
         this.emit("itemclick", event);
     }
@@ -18,6 +22,9 @@ style {
     .ui-sidebar {
         background-color: var(--accent-1);
         min-width: 300px;
+        position: sticky;
+        top: 0px;
+        height: 100vh;
     }
 
     .ui-sidebar.collapsed {
@@ -30,12 +37,12 @@ style {
     }
 }
 
-ui-container.ui-sidebar fillspace class={'collapsed': state.collapsed===true}
+ui-container.ui-sidebar class={'collapsed': state.collapsed===true} 
     ui-linear-layout gutter="0px" fillspace
         @element fillspace
             ui-list selected=null||input.selected on-itemclick("handleItemClick")
                 for|item, index| of=input.items||[]
-                    @item
+                    @item class=item.class id=item.id ...item
                         ui-button text=!state.collapsed?item.text||null:(item.icon?'':(item.text&&item.text.length>0?item.text[0]:'')) icon=item.icon
         @element
             if(input.collapsible)

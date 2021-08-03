@@ -1,11 +1,20 @@
 style {
     :root {
+        --primary: #fff;
+        --primary-light: #fff;
+        --primary-dark: #f1f3f5;
+        --secondary: #a5d8ff;
+        --secondary-light: #e7f5ff;
+        --secondary-dark: #4dabf7;
+        --tertiary: #ffd8a8;
+        --tertiary-light: #fff4e6;
+        --tertiary-dark: #ffa94d;
         --background-1: #fff;
         --background-2: #444;
         --accent-1: #f1f1f1;
         --accent-2: #aaa;
-        --text-1: #444;
-        --text-2: #fff;
+        --text-dark: #444;
+        --text-light: #fff;
         --border: #444;
         --rounded-radius: 4px;
         --padding: 8px;
@@ -27,8 +36,8 @@ style {
         display: flex;
         min-height: 100vh;
         width: 100%;
-        background-color: var(--background-1);
-        color: var(--text-1);
+        background-color: var(--primary);
+        color: var(--text-dark);
     }
 
     * {
@@ -69,13 +78,13 @@ style {
     }
 
     .ui-element.filled {
-        background-color: var(--background-2);
-        color: var(--text-2);
+        background-color: var(--primary-dark);
+        color: var(--text-light);
     }
 
-    .ui-element.accent {
-        background-color: var(--accent-1);
-        color: var(--text-1);
+    .ui-element.accent, .ui-element.secondary {
+        background-color: var(--secondary);
+        color: var(--text-dark);
     }
 
     .ui-element.rounded {
