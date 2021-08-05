@@ -4,7 +4,28 @@ style {
     }
 
     .ui-color-preview {
+        position: relative;
         cursor: pointer;
+        border-radius: 50%;
+    }
+
+    .ui-color-preview::before {
+        padding: var(--padding-wide);
+        transition: 0.25s padding, 0.25s top, 0.25s left;
+        border-radius: 50%;
+        background-color: inherit;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        content: "";
+        display: block;
+        border: 1px solid var(--border);
+    }
+
+    .active-color::before, .ui-color-preview-wrapper:hover > .ui-color-preview::before {
+        padding: calc(var(--padding-wide) + 4px);
+        top: -4px;
+        left: -4px;
     }
 
     .ui-color-select {
@@ -20,14 +41,20 @@ style {
 $ let colorsLists = input.colors||[['#fff', '#aaa', '#888', '#444', '#000']]
 
 div.ui-color-select-wrapper
-    ui-element.ui-color-preview ...input padded outlined filled theme={'--background-2': state.color, '--background-1': state.color} on-click("toggleDialogue")
-    ui-container fullscreen hidden=!state.showDialogue on-click("toggleDialogue")
-    ui-card.ui-color-select ...input raised hidden=!state.showDialogue
-        @header title="Color Select" heading=5
-        ui-linear-layout vertical centered padded
-            for|colors| of=colorsLists
-                @element
-                    ui-linear-layout centered
-                        for|color| of=colors
-                            @element
-                                ui-element.ui-color-preview padded outlined filled theme={'--background-2': color, '--background-1': color} on-click("selectColor", color)
+    if(input.popup)
+        ui-element.ui-color-preview ...input padded outlined filled theme={'--primary': state.color, '--primary': state.color} on-click("toggleDialogue")
+        ui-container fullscreen hidden=!state.showDialogue on-click("toggleDialogue")
+        ui-card.ui-color-select ...input raised hidden=!state.showDialogue
+            @header title="Color Select" heading=5
+            ui-linear-layout vertical centered padded
+                for|colors| of=colorsLists
+                    @element
+                        ui-linear-layout centered
+                            for|color| of=colors
+                                @element
+                                    ui-element.ui-color-preview padded outlined filled theme={'--primary': color} on-click("selectColor", color)
+    else
+        ui-linear-layout
+            for|color| of=input.colors||colorsLists[0]
+                @element.ui-color-preiew-wrapper
+                    ui-element.ui-color-preview class={"active-color": state.color===color} paddedwide filled theme={'--primary': color} on-click("selectColor", color)

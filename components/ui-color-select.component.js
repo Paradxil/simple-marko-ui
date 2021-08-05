@@ -9,13 +9,15 @@ class Component {
     }
 
     toggleDialogue() {
-        this.state.showDialogue = !this.state.showDialogue;
+        if(input.popup) {
+            this.state.showDialogue = !this.state.showDialogue;
+        }
     }
 
     selectColor(color) {
         this.state.color = color;
         this.state.showDialogue = false;
-        this.emit('input', {color: this.state.color})
+        this.emit('input', {color: this.state.color, value: this.state.color})
     }
 };
 

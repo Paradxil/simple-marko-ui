@@ -20,7 +20,7 @@ class {
 
 style {
     .ui-sidebar {
-        background-color: var(--accent-1);
+        background-color: var(--primary);
         min-width: 300px;
         position: sticky;
         top: 0px;
@@ -43,7 +43,7 @@ ui-container.ui-sidebar class={'collapsed': state.collapsed===true}
             ui-list selected=null||input.selected on-itemclick("handleItemClick")
                 for|item, index| of=input.items||[]
                     @item class=item.class id=item.id ...item
-                        ui-button text=!state.collapsed?item.text||null:(item.icon?'':(item.text&&item.text.length>0?item.text[0]:'')) icon=item.icon
+                        ui-button class=item.innerclass text=!state.collapsed?item.text||null:(item.icon?'':(item.text&&item.text.length>0?item.text[0]:'')) icon=item.icon
         @element
             if(input.collapsible)
                 ui-button.sidebar-collapse-button icon=state.collapsed?'chevron-right':'chevron-left' on-click("toggleCollapsed")

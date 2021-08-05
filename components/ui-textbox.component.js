@@ -9,6 +9,7 @@ class Component {
 
     pushInput(event) {
         this.state.value = event.target.value;
+        this.input.value = this.state.value;
         event.value = event.target.value;
         this.handleInput(event);
     }
