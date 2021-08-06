@@ -71,6 +71,7 @@
         "@selected": "number",
         "@collapsed": "boolean",
         "@collapsible": "boolean",
+        "@overlay": "boolean",
         "@items <item>[]": {
         }
     }

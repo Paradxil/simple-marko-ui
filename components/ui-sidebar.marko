@@ -22,13 +22,25 @@ style {
     .ui-sidebar {
         background-color: var(--primary);
         min-width: 300px;
+        position: relative;
+        min-height: 100vh;
+    }
+
+    .ui-sidebar-inner {
         position: sticky;
         top: 0px;
-        height: 100vh;
+        left: 0px;
     }
 
     .ui-sidebar.collapsed {
         min-width: unset;
+    }
+
+    .ui-sidebar.sidebar-overlay {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 500;
     }
 
     .sidebar-collapse-button {
@@ -37,8 +49,8 @@ style {
     }
 }
 
-ui-container.ui-sidebar class={'collapsed': state.collapsed===true} 
-    ui-linear-layout gutter="0px" fillspace
+ui-container.ui-sidebar class={'collapsed': state.collapsed, "sidebar-overlay": input.overlay} 
+    ui-linear-layout.ui-sidebar-inner gutter="0px"
         @element fillspace
             ui-list selected=null||input.selected on-itemclick("handleItemClick")
                 for|item, index| of=input.items||[]
