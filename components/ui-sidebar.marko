@@ -41,6 +41,11 @@ style {
         top: 0px;
         left: 0px;
         z-index: 500;
+        transition: 0.25s left;
+    }
+
+    .ui-sidebar.sidebar-hidden {
+        left: -100%;
     }
 
     .sidebar-collapse-button {
@@ -49,7 +54,7 @@ style {
     }
 }
 
-ui-container.ui-sidebar class={'collapsed': state.collapsed, "sidebar-overlay": input.overlay} 
+ui-container.ui-sidebar class={'collapsed': state.collapsed, "sidebar-overlay": input.overlay, "sidebar-hidden": input.hidden} 
     ui-linear-layout.ui-sidebar-inner gutter="0px"
         @element fillspace
             ui-list selected=null||input.selected on-itemclick("handleItemClick")
