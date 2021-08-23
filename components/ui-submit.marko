@@ -3,6 +3,14 @@ style {
         outline: none;
         border:1px solid #444;
         border-radius: var(--rounded-radius);
+        background-color: var(--secondary-light);
+        cursor: pointer;
+        transition: background-color 0.25s, color 0.25s;
+    }
+
+    .ui-submit:hover {
+        background-color: var(--secondary-dark);
+        color: var(--text-light);
     }
 }
 

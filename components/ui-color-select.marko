@@ -36,6 +36,9 @@ style {
         right: 0;
         background-color: #fff;
     }
+
+    .ui-color-select-inner {
+    }
 }
 
 $ let colorsLists = input.colors||[['#fff', '#aaa', '#888', '#444', '#000']]
@@ -54,7 +57,7 @@ div.ui-color-select-wrapper
                                 @element
                                     ui-element.ui-color-preview padded outlined filled theme={'--primary': color} on-click("selectColor", color)
     else
-        ui-linear-layout
+        ui-linear-layout.ui-color-select-inner wrap
             for|color| of=input.colors||colorsLists[0]
                 @element.ui-color-preiew-wrapper
                     ui-element.ui-color-preview class={"active-color": state.color===color} paddedwide filled theme={'--primary': color} on-click("selectColor", color)
