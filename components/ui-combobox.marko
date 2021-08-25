@@ -35,7 +35,7 @@ ui-element.ui-combobox-wrapper
         for|option| of=input.options.filter((el) => {return ((el.search||el.name||el.text||el.value||el).toLowerCase().search((state.value||"").toLowerCase()) >= 0)})||[]
             @element.ui-combobox-option
                 if(input.option != null && input.option.renderBody != null)
-                    ui-button key=option value=option on-click("setValue", (option.name||option.text||option.value||option), option)
+                    ui-button key=option value=option on-click("onOptionSelect", (option.name||option.text||option.value||option), option)
                         <${input.option.renderBody} option=option/>
                 else
-                    ui-button key=option value=option on-click("setValue", (option.name||option.text||option.value||option), option) -- ${(option.name||option.text||option.value||option)}
+                    ui-button key=option value=option on-click("onOptionSelect", (option.name||option.text||option.value||option), option) -- ${(option.name||option.text||option.value||option)}

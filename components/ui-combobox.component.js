@@ -35,7 +35,7 @@ class Component {
         }
     }
 
-    setValue(value, option, event) {
+    onOptionSelect(value, option, event) {
         this.state.value = value;
         event.value = event.target.value;
         event.option = option;
@@ -55,6 +55,15 @@ class Component {
         this.showDropDown();
         
         this.handleInput(event);
+    }
+
+    setValue(value) {
+        this.state.value = value;
+        this.getComponent("comboboxinput").state.value = value;
+    }
+
+    getValue() {
+        return this.state.value;
     }
 };
 
