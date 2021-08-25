@@ -19,6 +19,14 @@ class Component {
         this.state.showDialogue = false;
         this.emit('input', {color: this.state.color, value: this.state.color})
     }
+
+    setValue(color) {
+        this.state.color = color;
+    }
+
+    getValue() {
+        return this.state.color;
+    }
 };
 
 Object.assign(Component.prototype, Base);

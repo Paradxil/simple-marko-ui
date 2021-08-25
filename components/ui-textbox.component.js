@@ -13,6 +13,14 @@ class Component {
         event.value = event.target.value;
         this.handleInput(event);
     }
+
+    getValue() {
+        return this.state.value;
+    }
+
+    setValue(value) {
+        this.state.value = value;
+    }
 };
 
 Object.assign(Component.prototype, Base);
