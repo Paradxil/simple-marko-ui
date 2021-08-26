@@ -36,7 +36,7 @@ class Component {
     }
 
     onOptionSelect(value, option, event) {
-        this.state.value = value;
+        this.state.value = option.value;
         event.value = event.target.value;
         event.option = option;
 

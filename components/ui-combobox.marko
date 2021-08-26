@@ -31,8 +31,8 @@ ui-element.ui-combobox-wrapper
             ui-textbox key="comboboxinput" value=state.value ...input on-input("pushInput") on-click("handleClick")
         @element
             ui-button.ui-comobox-toggle-button icon=state.displayOptions?"x":"chevron-down" on-click("toggleDropDown")
-    ui-linear-layout.ui-combobox-options vertical filled hidden=!state.displayOptions rounded
-        for|option| of=input.options.filter((el) => {return ((el.search||el.name||el.text||el.value||el).toLowerCase().search((state.value||"").toLowerCase()) >= 0)})||[]
+    ui-linear-layout.ui-combobox-options vertical filled hidden=!state.displayOptions rounded gutter="0px"
+        for|option| of=(input.options||[]).filter((el) => {return ((el.search||el.name||el.text||el.value||el).toLowerCase().search((state.value||"").toLowerCase()) >= 0)})||[]
             @element.ui-combobox-option
                 if(input.option != null && input.option.renderBody != null)
                     ui-button key=option value=option on-click("onOptionSelect", (option.name||option.text||option.value||option), option)
