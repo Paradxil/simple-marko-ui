@@ -5,7 +5,7 @@ style {
         border-radius: var(--rounded-radius);
         padding-left: var(--padding-wide) !important;
         padding-right: var(--padding-wide) !important;
-        padding-top: var(--padding-wide) !important;
+        padding-top: calc(var(--padding-wide) + 0.25em) !important;
         padding-bottom: var(--padding) !important;
         font-family: var(--text-font);
     }
@@ -14,15 +14,16 @@ style {
         height: 0px;
         white-space: nowrap;
         width: 0px;
-        transform: translateY(calc(var(--padding-wide) * -2));
+        transform: translateY(calc((var(--padding-wide) + 1.25em) * -1));
         margin-left: var(--padding-wide) !important;
         transition: transform 0.5s;
         opacity: 0.8;
         pointer-events: none;
+        --label-small-scale: 0.75;
     }
 
     .ui-textbox-label-small, .ui-textbox:focus + .ui-textbox-label {
-        transform: translateY(calc(var(--padding-wide) * -2.5)) scale(0.75);
+        transform: translateY(calc((var(--padding-wide) + 1.6em) * -1)) scale(var(--label-small-scale));
     }
 }
 
