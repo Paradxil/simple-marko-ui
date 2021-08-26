@@ -21,15 +21,17 @@ style {
         background-color: #fff;
         z-index: 100;
         max-width: 325px;
+        overflow: hidden;
     }
 
     .day, .day-header {
         width: 2em;
+        transition: background-color 0.25s;
     }
 
     .day:hover {
         cursor: pointer;
-        background-color: var(--background-2);
+        background-color: var(--secondary-light);
     }
 
     .tab-button {
@@ -123,17 +125,20 @@ $ let lastDate = new Date(state.curDate.getFullYear(),state.curDate.getMonth()+1
 $ let numDays = lastDate.getDate();
 
 ui-element.ui-date-select-wrapper ...input padded outlined 
-    ui-date.ui-date-preview time=state.includeTime date=state.includeDate milliseconds=state.value on-click("togglePopup")
+    ui-linear-layout
+        @element
+            ui-date.ui-date-preview time=state.includeTime date=state.includeDate milliseconds=state.value on-click("togglePopup")
+        @element
+            ui-icon icon="calendar"
     ui-container.ui-date-fullscreen-overlay fullscreen hidden=!state.popup on-click("togglePopup")
     ui-card.ui-date-select ...input raised hidden=!state.popup
-        @header title="Date Select" heading=5 padded filled alignleft
+        @header title="Date Select" heading=5 padded secondary alignleft
             ui-heading padded
                 ui-date time=state.includeTime date=state.includeDate milliseconds=state.value
-        ui-linear-layout.tab-buttons filled fillspace fullwidth
-            if(state.includeDate)
+        if(state.includeDate && state.includeTime)
+            ui-linear-layout.tab-buttons filled fillspace fullwidth
                 @element fillspace
                     ui-button.tab-button icon="calendar" filled accent=state.tab==="date" on-click("changeTab", "date")
-            if(state.includeTime)
                 @element fillspace
                     ui-button.tab-button icon="clock" filled accent=state.tab==="time" on-click("changeTab", "time")
         if(state.tab==="date")
@@ -159,7 +164,7 @@ ui-element.ui-date-select-wrapper ...input padded outlined
                             for|d| from=1 to=7
                                 $ let day = week * 7 + d - firstOffset;
                                 if(day <= numDays && day > 0)
-                                    @element class="day" aligncenter rounded filled=(state.curDate.getDate()===day&&state.curDate.getFullYear()===state.date.getFullYear()&&state.curDate.getMonth()===state.date.getMonth())
+                                    @element class="day" aligncenter rounded secondary=(state.curDate.getDate()===day&&state.curDate.getFullYear()===state.date.getFullYear()&&state.curDate.getMonth()===state.date.getMonth())
                                         ui-element on-click("setDate", state.curDate.getMonth(), day, state.curDate.getFullYear())
                                             ui-text padded -- ${day}
                                 else
