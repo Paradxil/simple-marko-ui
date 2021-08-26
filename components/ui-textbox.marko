@@ -1,11 +1,31 @@
 style {
     .ui-textbox {
         outline: none;
-        border: solid #444 1px;
+        border: solid var(--border) 1px;
         border-radius: var(--rounded-radius);
-        padding-left: 12px !important;
-        padding-right: 12px !important;
+        padding-left: var(--padding-wide) !important;
+        padding-right: var(--padding-wide) !important;
+        padding-top: var(--padding-wide) !important;
+        padding-bottom: var(--padding) !important;
+        font-family: var(--text-font);
+    }
+
+    .ui-textbox-label {
+        height: 0px;
+        white-space: nowrap;
+        width: 0px;
+        transform: translateY(calc(var(--padding-wide) * -2));
+        margin-left: var(--padding-wide) !important;
+        transition: transform 0.5s;
+        opacity: 0.8;
+    }
+
+    .ui-textbox-label-small, .ui-textbox:focus + .ui-textbox-label {
+        transform: translateY(calc(var(--padding-wide) * -2.5)) scale(0.75);
     }
 }
 
 ui-element.ui-textbox ...input tag="input" class=input.class id=input.id type=input.password?"password":"textbox" value=state.value padded fullwidth on-input("pushInput") on-click("handleClick")
+if(input.label)
+    label.ui-textbox-label class={"ui-textbox-label-small": state.value?state.value.length>0:false}
+        ui-text -- ${input.label}
