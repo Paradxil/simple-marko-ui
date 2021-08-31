@@ -8,6 +8,11 @@ class Component {
         };
     }
 
+    preHandleClick(event) {
+        this.showDropDown();
+        this.handleClick(event);
+    }
+
     toggleDropDown(event) {
         if(this.state.displayOptions) {
             this.removeDropDown();

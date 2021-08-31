@@ -28,10 +28,13 @@ style {
 ui-element.ui-combobox-wrapper
     ui-linear-layout.ui-combobox-controls gutter="0px"
         @element fillspace
-            ui-textbox key="comboboxinput" value=state.value ...input on-input("pushInput") on-click("handleClick")
-        @element
-            ui-button.ui-comobox-toggle-button icon=state.displayOptions?"x":"chevron-down" on-click("toggleDropDown")
+            ui-textbox key="comboboxinput" value=state.value ...input on-input("pushInput") on-click("preHandleClick")
+        /*@element
+            ui-button.ui-comobox-toggle-button icon=state.displayOptions?"x":"chevron-down" on-click("toggleDropDown")*/
     ui-linear-layout.ui-combobox-options vertical filled hidden=!state.displayOptions rounded gutter="0px"
+        if(input.first && input.first.renderBody)
+            @element.ui-combobox-option ...input.first
+                <${input.first.renderBody}/>
         for|option| of=(input.options||[]).filter((el) => {return ((el.search||el.name||el.text||el.value||el).toLowerCase().search((state.value||"").toLowerCase()) >= 0)})||[]
             @element.ui-combobox-option
                 if(input.option != null && input.option.renderBody != null)
@@ -39,3 +42,6 @@ ui-element.ui-combobox-wrapper
                         <${input.option.renderBody} option=option/>
                 else
                     ui-button key=option value=option on-click("onOptionSelect", (option.name||option.text||option.value||option), option) -- ${(option.name||option.text||option.value||option)}
+        if(input.last && input.last.renderBody)
+            @element.ui-combobox-option ...input.last
+                <${input.last.renderBody}/>
