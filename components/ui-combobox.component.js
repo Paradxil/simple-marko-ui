@@ -62,6 +62,16 @@ class Component {
         this.handleInput(event);
     }
 
+    clearInput(event) {
+        this.state.value = ""
+        event.value = "";
+        this.getComponent("comboboxinput").state.value = "";
+
+        this.showDropDown();
+        
+        this.handleInput(event);
+    }
+
     setValue(value) {
         this.state.value = value;
         this.getComponent("comboboxinput").state.value = value;

@@ -23,12 +23,25 @@ style {
         align-items: center;
     }
 
+    .ui-combobox-option > .ui-button:hover {
+        background-color: var(--secondary-light);
+        color: var(--text-dark);
+    }
+
+    .ui-combobox-clear-button-wrapper {
+        position: absolute;
+        right: var(--padding);
+    }
+
 }
 
 ui-element.ui-combobox-wrapper
-    ui-linear-layout.ui-combobox-controls gutter="0px"
+    ui-linear-layout.ui-combobox-controls gutter="0px" aligncenter
         @element fillspace
-            ui-textbox key="comboboxinput" value=state.value ...input on-input("pushInput") on-click("preHandleClick")
+            ui-textbox.ui-combobox-textbox key="comboboxinput" value=state.value ...input on-input("pushInput") on-click("preHandleClick")
+        if(state.value != null && state.value.length>0)
+            @element.ui-combobox-clear-button-wrapper
+                ui-button.ui-combobox-clear-button rounded icon='x' on-click("clearInput")
         /*@element
             ui-button.ui-comobox-toggle-button icon=state.displayOptions?"x":"chevron-down" on-click("toggleDropDown")*/
     ui-linear-layout.ui-combobox-options vertical filled hidden=!state.displayOptions rounded gutter="0px"
