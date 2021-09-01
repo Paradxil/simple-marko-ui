@@ -7,7 +7,7 @@ class Component {
         }
 
         // Check for these keywords in the input and add them to the class list if present
-        this.keywords = ["light", "dark", "filled", "rounded", "accent", "secondary", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow", "hidden", "raised", "outlined", "fullscreen"];
+        this.keywords = ["light", "dark", "disabled", "filled", "rounded", "accent", "secondary", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow", "hidden", "raised", "outlined", "fullscreen"];
     }
     onInput(input) {
         let classes = [input.class||null];
