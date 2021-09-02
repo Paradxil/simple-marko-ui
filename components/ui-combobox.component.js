@@ -41,8 +41,8 @@ class Component {
     }
 
     onOptionSelect(value, option, event) {
-        this.state.value = option.value;
-        event.value = event.target.value;
+        this.state.value = option.search||option.value;
+        event.value = option.value;
         event.option = option;
 
         this.emit("select", event);
