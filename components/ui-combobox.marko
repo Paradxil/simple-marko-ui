@@ -35,10 +35,14 @@ style {
 
 }
 
+static function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 ui-element.ui-combobox-wrapper
     ui-linear-layout.ui-combobox-controls gutter="0px" aligncenter
         @element fillspace
-            ui-textbox.ui-combobox-textbox key="comboboxinput" value=state.value ...input on-input("pushInput") on-click("preHandleClick")
+            ui-textbox key="comboboxinput" value=state.value ...input on-input("pushInput") on-click("preHandleClick")
         if(state.value != null && state.value.length>0)
             @element.ui-combobox-clear-button-wrapper
                 ui-button.ui-combobox-clear-button rounded icon='x' on-click("clearInput")
@@ -48,7 +52,7 @@ ui-element.ui-combobox-wrapper
         if(input.first && input.first.renderBody)
             @element.ui-combobox-option ...input.first
                 <${input.first.renderBody}/>
-        for|option| of=(input.options||[]).filter((el) => {return ((el.search||el.name||el.text||el.value||el).toLowerCase().search((state.value||"").toLowerCase()) >= 0)})||[]
+        for|option| of=(input.options||[]).filter((el) => {return ((el.search||el.name||el.text||el.value||el).toLowerCase().search(escapeRegExp(state.value||"").toLowerCase()) >= 0)})||[]
             @element.ui-combobox-option
                 if(input.option != null && input.option.renderBody != null)
                     ui-button key=option value=option on-click("onOptionSelect", (option.name||option.text||option.value||option), option)
