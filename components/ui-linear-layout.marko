@@ -18,11 +18,12 @@ $ let gutter = input.gutter||"8px";
 ui-container.ui-linear-layout ...input on-click("handleClick") class=input.class id=input.id style={...input.style,
     flexDirection: input.vertical?'column':'row', 
     alignItems: input.centered?"center":null,
-    flexFlow: input.wrap?"wrap":null
+    flexFlow: input.wrap?"wrap":null,
+    gap: gutter
 }
     for|element| of=input.elements||[]
-        ui-container.ui-linear-layout-child ...element class=element.class id=element.id style={
+        ui-container.ui-linear-layout-child ...element class=element.class id=element.id /*style={
             marginLeft: input.vertical?null:gutter,
             marginTop: input.vertical?gutter:null
-        }
+        }*/
             <${element.renderBody}/>

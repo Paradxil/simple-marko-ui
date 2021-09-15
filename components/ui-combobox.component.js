@@ -4,6 +4,7 @@ class Component {
     onCreate(input) {
         this.state = {
             value: input.value || null,
+            option: null,
             displayOptions: false
         };
     }
@@ -42,6 +43,7 @@ class Component {
 
     onOptionSelect(value, option, event) {
         this.state.value = option.search||option.value;
+        this.state.option = option;
         event.value = option.value;
         event.option = option;
 
@@ -79,6 +81,16 @@ class Component {
 
     getValue() {
         return this.state.value;
+    }
+
+    setOption(option) {
+        this.state.option = option;
+        this.state.value = (option.name||option.text||option.value||option);
+        this.setStateDirty('option');
+    }
+
+    getOption() {
+        return this.state.option;
     }
 };
 
