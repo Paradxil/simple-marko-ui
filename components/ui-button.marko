@@ -41,6 +41,6 @@ ui-element.ui-button ...input padded on-click(input.disabled?()=>{}:"handleClick
             ui-icon icon=input.icon
         if(input.text)
             ui-text -- ${input.text}
+        <${input.renderBody}/>
         if(input.trailingicon)
             ui-icon icon=input.trailingicon
-        <${input.renderBody}/>
