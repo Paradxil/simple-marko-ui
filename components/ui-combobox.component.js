@@ -83,9 +83,17 @@ class Component {
         return this.state.value;
     }
 
+    clearOption() {
+        this.state.option = null;
+        this.state.value = null;
+        this.getComponent("comboboxinput").state.value = "";
+        this.setStateDirty('option');
+    }
+
     setOption(option) {
         this.state.option = option;
         this.state.value = (option.name||option.text||option.value||option);
+        this.getComponent("comboboxinput").state.value = this.state.value;
         this.setStateDirty('option');
     }
 
