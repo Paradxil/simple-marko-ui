@@ -15,11 +15,13 @@ class Component {
     }
 
     getValue() {
+        console.log(this.state.value);
         return this.state.value;
     }
 
     setValue(value) {
         this.state.value = value;
+        this.input.value = value;
     }
 };
 
