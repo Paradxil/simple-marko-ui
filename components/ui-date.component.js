@@ -1,26 +1,45 @@
 const Base = require("./base.mixin");
+var format = require('date-fns/format/index.js');
+var toDate = require('date-fns/toDate/index.js');
 
 class Component {
+    
     onCreate(input) {
         this.state = {
-            date: this.getNiceDate(input.milliseconds),
-            hour: this.getNiceHour(input.milliseconds)
+            dateString: ""
         };
+
+        this.onInput(input);
     }
 
     onInput(input) {
-        this.state.date = this.getNiceDate(input.milliseconds);
-        this.state.hour = this.getNiceHour(input.milliseconds);
+        this.date = toDate(input.milliseconds);
+
+        this.format = '';
+
+        if(input.date === true || input.date == null) {
+            this.format += 'MM/dd/yy ';
+        }
+
+        if(input.time === true || input.time == null) {
+            this.format += 'HH:mm';
+        }
+
+        this.state.dateString = this.getDateString();
     }
 
-    getNiceDate(millseconds) {
-        let date = new Date(millseconds);
-        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
-    }
-    
-    getNiceHour(millseconds) {
-        let date = new Date(millseconds);
-        return (date.getHours()===0?'00':date.getHours()) + ":" + (date.getMinutes() < 10 ? "0" : '') + date.getMinutes();
+    getDateString() {
+        console.log
+        if(this.date == null) {
+            return "ERR";
+        }
+
+        try {
+            return format(this.date, this.format);
+        }
+        catch(err) {
+            return "ERR";
+        }
     }
     
 };
