@@ -1,11 +1,10 @@
 style {
     .ui-date-select-wrapper {
-        position: relative;
         transition: background 0.25s;
     }
 
     .ui-date-select-wrapper:hover {
-        background-color: var(--background-2);
+        background-color: var(--secondary);
     }
 
     .ui-date-preview {
@@ -33,11 +32,6 @@ style {
     .day:hover {
         cursor: pointer;
         background-color: var(--secondary-light);
-    }
-
-    .tab-button {
-        border-top-left-radius: var(--rounded-radius);
-        border-top-right-radius: var(--rounded-radius);
     }
 
     .clock-wrapper {
@@ -95,7 +89,7 @@ style {
         width: 14px;
         height: 14px;
         border-radius: 7px;
-        background-color: var(--background-2);
+        background-color: var(--secondary);
         position: absolute;
         top: calc(50% - 7px);
         left: calc(50% - 7px);
@@ -109,7 +103,7 @@ style {
         top: 2em;
         left: calc(50% - 2px);
         transform-origin: 50% calc(125px - 2em);
-        background-color: var( --background-2);
+        background-color: var( --secondary);
     }
 
     .ui-date-fullscreen-overlay {
@@ -125,12 +119,9 @@ $ let firstOffset = firstDate.getDay();
 $ let lastDate = new Date(state.curDate.getFullYear(),state.curDate.getMonth()+1,0);
 $ let numDays = lastDate.getDate();
 
-ui-element.ui-date-select-wrapper ...input padded outlined 
-    ui-linear-layout
-        @element
-            ui-date.ui-date-preview time=state.includeTime date=state.includeDate milliseconds=state.value on-click("togglePopup")
-        @element
-            ui-icon icon="calendar"
+ui-element.ui-date-select-wrapper ...input
+    ui-button on-click("togglePopup") rounded trailingicon="calendar" outlined
+        ui-date.ui-date-preview time=state.includeTime date=state.includeDate milliseconds=state.value
     ui-container.ui-date-fullscreen-overlay fullscreen hidden=!state.popup on-click("togglePopup")
     ui-card.ui-date-select ...input raised hidden=!state.popup
         @header title="Date Select" heading=5 padded secondary alignleft
@@ -139,9 +130,9 @@ ui-element.ui-date-select-wrapper ...input padded outlined
         if(state.includeDate && state.includeTime)
             ui-linear-layout.tab-buttons filled fillspace fullwidth
                 @element fillspace
-                    ui-button.tab-button icon="calendar" filled accent=state.tab==="date" on-click("changeTab", "date")
+                    ui-button.tab-button icon="calendar" filled secondary=state.tab!=="date" on-click("changeTab", "date")
                 @element fillspace
-                    ui-button.tab-button icon="clock" filled accent=state.tab==="time" on-click("changeTab", "time")
+                    ui-button.tab-button icon="clock" filled secondary=state.tab!=="time" on-click("changeTab", "time")
         if(state.tab==="date")
             ui-linear-layout vertical centered padded
                 @element
@@ -178,7 +169,7 @@ ui-element.ui-date-select-wrapper ...input padded outlined
                 div.clock-hand style={transform: 'rotate('+r+'deg)'}
                 if(state.setHour)
                     for|i| from=-1 to=23
-                        ui-button.clock-number class={"clock-number-inner": i>11} text=i.toString() filled=state.curDate.getHours()===i rounded style={transform: 'rotate('+(i * 360/12)+'deg)'} on-click("changeHour", i)
+                        ui-button.clock-number class={"clock-number-inner": i>11} text=i.toString() secondary=state.curDate.getHours()===i rounded style={transform: 'rotate('+(i * 360/12)+'deg)'} on-click("changeHour", i)
                 else
                     for|i| from=-1 to=59
-                        ui-button.clock-minute class={"clock-number": i%5===0} text=(i%5===0?i.toString():"") filled=state.curDate.getMinutes()===i rounded style={transform: 'rotate('+(i * 360/60)+'deg)'} on-click("changeMinute", i)
+                        ui-button.clock-minute class={"clock-number": i%5===0} text=(i%5===0?i.toString():"") secondary=state.curDate.getMinutes()===i rounded style={transform: 'rotate('+(i * 360/60)+'deg)'} on-click("changeMinute", i)
