@@ -1,4 +1,10 @@
 const Base = require("./base.mixin");
+var addMonths = require('date-fns/addMonths/index.js');
+var setMonth = require('date-fns/setMonth/index.js');
+var setYear = require('date-fns/setYear/index.js');
+var setHours = require('date-fns/setHours/index.js');
+var setMinutes = require('date-fns/setMinutes/index.js');
+
 
 class Component {
     onCreate(input) {
@@ -28,59 +34,52 @@ class Component {
     }
     
     setDate(month, day, year, event) {
-        this.state.date.setMonth(month);
-        this.state.date.setDate(day);
-        this.state.date.setFullYear(year);
+        this.state.date = new Date(year, month, day, this.state.date.getHours(), this.state.date.getMinutes());
         this.state.value = this.state.date.getTime();
         this.state.curDate = this.state.date;
         this.setStateDirty("curDate");
         this.emitEvent();
     }
 
-    changeMonth(event) {
-        let newMonth = parseInt(event.value);
-        console.log(newMonth);
-        if(newMonth < 0) {
-            this.state.curDate.setFullYear(this.state.curDate.getFullYear()-1);
-            this.state.curDate.setMonth(11);
-        }
-        else if(newMonth > 11) {
-            console.log(this.state.curDate.getFullYear()+1);
-            this.state.curDate.setFullYear(this.state.curDate.getFullYear()+1);
-            this.state.curDate.setMonth(0);
-        }
-        else {
-            this.state.curDate.setMonth(newMonth);
-        }
+    changeMonth(forward=true) {
+        this.state.curDate = addMonths(this.state.curDate, forward?1:-1);
+        this.setStateDirty("curDate");
+    }
+
+    setMonth(event) {
+        this.state.curDate = setMonth(this.state.curDate, event.value);
         this.setStateDirty("curDate");
     }
 
     changeYear(event) {
-        this.state.curDate.setFullYear(parseInt(event.value));
+        this.state.curDate = setYear(this.state.curDate, parseInt(event.value));
         this.setStateDirty("curDate");
     }
 
     changeHour(hour) {
-        this.state.curDate.setHours(hour);
-        this.state.date.setHours(hour);
+        this.state.curDate = setHours(this.state.curDate, hour);
+        this.state.date = setHours(this.state.date, hour);
         this.state.value = this.state.date.getTime();
         this.setStateDirty("curDate");
         this.setStateDirty("date");
-        this.state.setHour = false;
         this.emitEvent();
     }
 
     changeMinute(minute) {
-        this.state.curDate.setMinutes(minute);
-        this.state.date.setMinutes(minute);
+        this.state.curDate = setMinutes(this.state.curDate, minute);
+        this.state.date = setMinutes(this.state.date, minute);
         this.state.value = this.state.date.getTime();
         this.setStateDirty("curDate");
-        this.state.setHour = true;
+        this.setStateDirty("date");
         this.emitEvent();
     }
 
     changeTab(tab) {
         this.state.tab = tab;
+    }
+
+    toggleSetHours() {
+        this.state.setHour = !this.state.setHour;
     }
 };
 
