@@ -1,0 +1,15 @@
+$ function pad(number) {
+    return (number < 10 ? '0' : '') + number
+}
+
+ui-linear-layout.ui-timer ...input class=input.class id=input.id on-click('handleClick')
+    @element
+        ui-text -- ${pad(state.hours)}${state.hoursSuffix}
+    @element
+        ui-text -- ${state.divider}
+    @element
+        ui-text -- ${pad(state.minutes)}${state.minutesSuffix}
+    @element
+        ui-text -- ${state.divider}
+    @element
+        ui-text -- ${pad(state.seconds)}${state.secondsSuffix}
