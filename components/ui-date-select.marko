@@ -120,8 +120,9 @@ $ let lastDate = new Date(state.curDate.getFullYear(),state.curDate.getMonth()+1
 $ let numDays = lastDate.getDate();
 
 ui-element.ui-date-select-wrapper ...input
-    ui-button on-click("togglePopup") rounded trailingicon="calendar" outlined
+    ui-button on-click("togglePopup") labeled=input.label!=null rounded trailingicon="calendar"
         ui-date.ui-date-preview time=state.includeTime date=state.includeDate milliseconds=state.value
+    ui-label text=input.label small=true
     ui-container.ui-date-fullscreen-overlay fullscreen hidden=!state.popup on-click("togglePopup")
     ui-card.ui-date-select ...input raised hidden=!state.popup
         @header title="Date Select" heading=5 padded secondary alignleft
