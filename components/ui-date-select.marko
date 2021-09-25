@@ -104,10 +104,17 @@ style {
         left: calc(50% - 2px);
         transform-origin: 50% calc(125px - 2em);
         background-color: var( --secondary);
+        transition: transform 0.25s;
     }
 
     .ui-date-fullscreen-overlay {
         z-index: 100;
+    }
+
+    .clock-toggle-hour-select {
+        position: absolute;
+        top: calc(-25px + 8px);
+        left: 8px;
     }
 }
 
@@ -127,7 +134,13 @@ ui-element.ui-date-select-wrapper ...input
     ui-card.ui-date-select ...input raised hidden=!state.popup
         @header title="Date Select" heading=5 padded secondary alignleft
             ui-heading padded
-                ui-date time=state.includeTime date=state.includeDate milliseconds=state.value
+                ui-linear-layout
+                    if(state.includeDate)
+                        @element
+                            ui-date time=false milliseconds=state.value on-click("changeTab", "date")
+                    if(state.includeTime)
+                        @element
+                            ui-date date=false milliseconds=state.value on-click("changeTab", "time")
         if(state.includeDate && state.includeTime)
             ui-linear-layout.tab-buttons filled fillspace fullwidth
                 @element fillspace
@@ -139,13 +152,13 @@ ui-element.ui-date-select-wrapper ...input
                 @element
                     ui-linear-layout
                         @element
-                            ui-button icon="chevron-left" rounded on-click("changeMonth",{value: state.curDate.getMonth()-1})
+                            ui-button icon="chevron-left" rounded on-click("changeMonth",false)
                         @element
-                            ui-select value=state.curDate.getMonth().toString() options=months.map((m, i)=>{return {value:i, text:m};}) on-input("changeMonth")
+                            ui-select value=state.curDate.getMonth().toString() options=months.map((m, i)=>{return {value:i, text:m};}) on-input("setMonth")
                         @element
                             ui-select value=state.curDate.getFullYear() options=Array.from({length: new Date().getFullYear()-1970+1}, (_, i) => {return {value: i + 1970 + 1}}).reverse() on-input("changeYear")
                         @element
-                            ui-button icon="chevron-right" rounded on-click("changeMonth",{value: state.curDate.getMonth()+1})
+                            ui-button icon="chevron-right" rounded on-click("changeMonth",true)
                 @element fillspace
                     ui-linear-layout fillspace
                         for|day| of=days
@@ -165,6 +178,7 @@ ui-element.ui-date-select-wrapper ...input
                                         ui-text padded
         else-if(state.tab==="time")
             ui-element.clock-wrapper padded fullwidth fillspace centered
+                ui-button.clock-toggle-hour-select rounded title=(state.setHour?"Set minutes":"Set hours") icon="refresh-cw" on-click("toggleSetHours")
                 div.clock-center
                 $ let r = (state.setHour?state.curDate.getHours():state.curDate.getMinutes()) * (state.setHour?360/12:360/60);
                 div.clock-hand style={transform: 'rotate('+r+'deg)'}
