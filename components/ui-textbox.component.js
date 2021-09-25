@@ -15,7 +15,6 @@ class Component {
     }
 
     getValue() {
-        console.log(this.state.value);
         return this.state.value;
     }
 
