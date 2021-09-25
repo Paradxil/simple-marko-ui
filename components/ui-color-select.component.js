@@ -3,7 +3,7 @@ const Base = require("./base.mixin");
 class Component {
     onCreate(input) {
         this.state = {
-            color: input.color||"#fff",
+            color: input.color||input.value||"#fff",
             showDialogue: false
         }
     }
