@@ -7,24 +7,30 @@ style {
         position: relative;
         cursor: pointer;
         border-radius: 50%;
+        background-color: transparent;
     }
 
     .ui-color-preview::before {
         padding: var(--padding-wide);
-        transition: 0.25s padding, 0.25s top, 0.25s left;
+        transition: border 0.5s, margin 0.5s;
         border-radius: 50%;
         background-color: inherit;
         position: absolute;
-        top: 0px;
-        left: 0px;
+        top: -5px;
+        left: -5px;
         content: "";
         display: block;
+        border: 5px solid transparent;
+    }
+
+    .active-color {
+        margin-left: 10px !important;
+        margin-right: 10px;
     }
 
     .active-color::before, .ui-color-preview-wrapper:hover > .ui-color-preview::before {
-        padding: calc(var(--padding-wide) + 4px);
-        top: -4px;
-        left: -4px;
+        /*transform: scale(1.2);*/
+        border: 5px solid #ffffffee;
     }
 
     .ui-color-select {
@@ -37,6 +43,13 @@ style {
     }
 
     .ui-color-select-inner {
+        transition: background-color 0.25s;
+        padding-bottom: var(--padding) !important;
+        padding-top: calc(var(--padding-wide) + 6px) !important;
+    }
+
+    .ui-color-select-wrapper .ui-label-small {
+        transform: translateY(calc((var(--padding-wide) + 2.5em) * -1)) scale(var(--label-small-scale));
     }
 }
 
@@ -56,7 +69,8 @@ div.ui-color-select-wrapper
                                 @element
                                     ui-element.ui-color-preview padded outlined filled theme={'--primary': color} on-click("selectColor", color)
     else
-        ui-linear-layout.ui-color-select-inner wrap
+        ui-linear-layout.ui-color-select-inner.ui-input wrap theme={'--primary': state.color+"44"} filled paddedwide ...input
             for|color| of=input.colors||colorsLists[0]
-                @element.ui-color-preiew-wrapper
-                    ui-element.ui-color-preview class={"active-color": state.color===color} paddedwide filled theme={'--primary': color} on-click("selectColor", color)
+                @element.ui-color-preview-wrapper
+                    ui-element.ui-color-preview class={"active-color": state.color===color} paddedwide filled theme={'--primary': color} raised on-click("selectColor", color)
+        ui-label label="Test" small=true
