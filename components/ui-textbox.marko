@@ -11,4 +11,4 @@ style {
 }
 
 ui-element.ui-textbox ...input tag="input" labeled=input.label!=null class=input.class id=input.id type=input.password?"password":"textbox" value=state.value padded fullwidth on-input("pushInput") on-click("handleClick")
-ui-label text=input.label small=state.value?state.value.length>0:false
+ui-label text=input.label small=state.value?true:false
