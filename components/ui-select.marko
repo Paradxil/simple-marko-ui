@@ -14,3 +14,4 @@ ui-element.ui-select tag="select" class=input.class id=input.id ...input padded 
         option.ui-select-default label=input.default||" " -- ${input.default||''}
     for|option| of=input.options||[]
         ui-element.ui-select-option selected=state.value==option.value tag="option" ...input key=option.value value=option.value -- ${option.text||option.name||option.value}
+ui-label small=true text=input.label
