@@ -3,9 +3,9 @@ const Base = require("./base.mixin");
 class Component {
     onCreate(input) {
         this.state = {
-            color: input.color||input.value||"#fff",
+            color: input.value||input.color||"#fff",
             showDialogue: false
-        }
+        };
     }
 
     toggleDialogue() {
@@ -17,7 +17,7 @@ class Component {
     selectColor(color) {
         this.state.color = color;
         this.state.showDialogue = false;
-        this.emit('input', {color: this.state.color, value: this.state.color})
+        this.emit('input', {color: this.state.color.color, value: this.state.color.value})
     }
 
     setValue(color) {

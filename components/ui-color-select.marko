@@ -23,11 +23,6 @@ style {
         border: 5px solid transparent;
     }
 
-    .active-color {
-        margin-left: 10px !important;
-        margin-right: 10px;
-    }
-
     .active-color::before, .ui-color-preview-wrapper:hover > .ui-color-preview::before {
         /*transform: scale(1.2);*/
         border: 5px solid #ffffffee;
@@ -44,12 +39,12 @@ style {
 
     .ui-color-select-inner {
         transition: background-color 0.25s;
-        padding-bottom: var(--padding) !important;
-        padding-top: calc(var(--padding-wide) + 6px) !important;
+        padding-bottom: calc(var(--padding) + 8px) !important;
+        padding-top: calc(var(--padding-wide) + 10px) !important;
     }
 
     .ui-color-select-wrapper .ui-label-small {
-        transform: translateY(calc((var(--padding-wide) + 2.5em) * -1)) scale(var(--label-small-scale));
+        transform: translateY(calc((var(--padding-wide) + 3.25em) * -1)) scale(var(--label-small-scale));
     }
 }
 
@@ -69,8 +64,8 @@ div.ui-color-select-wrapper
                                 @element
                                     ui-element.ui-color-preview padded outlined filled theme={'--primary': color} on-click("selectColor", color)
     else
-        ui-linear-layout.ui-color-select-inner.ui-input wrap theme={'--primary': state.color+"44"} filled paddedwide ...input
+        ui-linear-layout.ui-color-select-inner.ui-input wrap theme={'--primary': state.color.color+"44"} filled paddedwide ...input
             for|color| of=input.colors||colorsLists[0]
                 @element.ui-color-preview-wrapper
-                    ui-element.ui-color-preview class={"active-color": state.color===color} paddedwide filled theme={'--primary': color} raised on-click("selectColor", color)
-        ui-label label="Test" small=true
+                    ui-element.ui-color-preview class={"active-color": state.color.value===color.value} paddedwide filled theme={'--primary': color.color} raised on-click("selectColor", color)
+        ui-label label=input.label small=true
