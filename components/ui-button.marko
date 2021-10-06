@@ -48,3 +48,6 @@ ui-element.ui-button ...input padded on-click(input.disabled?()=>{}:"handleClick
         <${input.renderBody}/>
         if(input.trailingicon)
             ui-icon icon=input.trailingicon
+if(input.title!=null)
+    ui-popover
+        ui-text -- ${input.title}

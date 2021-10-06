@@ -1,0 +1,54 @@
+import { createPopper } from '@popperjs/core'
+
+class {
+    onMount() {
+        createPopper(this.el.previousElementSibling, this.getComponent("popover").el, {
+            placement: "bottom",
+            modifiers: [
+                {
+                    name: "offset",
+                    options: {
+                        offset: [0, 5]
+                    }
+                },
+                {
+                    name: 'arrow',
+                    options: {
+                        padding: 8,
+                        element: this.getEl("arrow")
+                    }
+                }
+            ]
+        });
+    }
+}
+
+style {
+    .ui-popover {
+        display: none;
+        opacity: 0;
+        font-size: initial !important;
+        transition: opacity 0.25s;
+    }
+
+    *:hover + .ui-popover-wrapper > .ui-popover {
+        display: block;
+        opacity: 1;
+    }
+
+    .ui-popover-arrow {
+        display: block;
+        position: absolute;
+        bottom: calc(100% - 5px);
+        background-color: var(--primary);
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+    }
+}
+
+div.ui-popover-wrapper
+    ui-container.ui-popover ...input filled rounded raised padded key="popover"
+        div.ui-popover-arrow key="arrow"
+        <${input.renderBody}/>
+

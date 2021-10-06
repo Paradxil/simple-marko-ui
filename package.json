@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@marko/serve": "^4.2.1",
+    "@popperjs/core": "^2.10.2",
     "date-fns": "^2.24.0",
     "feather-marko": "^0.0.3",
     "marko": "^5.9.0"
