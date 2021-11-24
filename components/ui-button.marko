@@ -39,8 +39,8 @@ style {
     }
 }
 
-ui-element.ui-button ...input padded on-click(input.disabled?()=>{}:"handleClick") class=input.class id=input.id
-    a.ui-button-content href=input.href||input.src||null
+ui-element.ui-button ...input title=null on-click(input.disabled?()=>{}:"handleClick") class=input.class id=input.id
+    ui-element.ui-button-content tag="a" padded href=input.href||input.src||null
         if(input.icon)
             ui-icon icon=input.icon
         if(input.text)
