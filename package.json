@@ -1,8 +1,12 @@
 {
   "name": "simple-marko-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple library of UI components for MarkoJS.",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Paradxil/simple-marko-ui.git"
+  },
+  "homepage": "https://github.com/Paradxil/simple-marko-ui#readme",
   "scripts": {
     "demo": "npx marko-serve ./demo/index.marko"
   },
