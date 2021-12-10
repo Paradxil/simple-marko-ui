@@ -1,6 +1,6 @@
 {
   "name": "simple-marko-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple library of UI components for MarkoJS.",
   "repository": {
     "type": "git",
