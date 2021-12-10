@@ -1,0 +1,26 @@
+style {
+    .ui-style-scope {
+        display: contents;
+    }
+}
+
+// These refer to css variables that change an elements appearance.
+$ let vars = ['primary', 'secondary', 'padding', 'roundedradius', 'border']
+
+// These refer to component attributes that change an elements appearance.
+$ let attrs = ['rounded', 'padded', 'outlined', 'raised', 'filled', 'light', 'dark']
+
+$ let styles = []
+$ for(let attr in input) {
+    if(attr in vars) {
+
+    }
+    else if(attr in attrs) {
+        
+    }
+}
+
+$ console.log(input)
+
+div.ui-style-scope style=styles
+    ${input.renderBody}

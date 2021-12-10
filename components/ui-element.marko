@@ -1,25 +1,26 @@
 style {
+    @import "../node_modules/open-color/open-color.css";
+
     :root {
-        --primary: #fff;
-        --primary-light: #fff;
-        --primary-dark: #f1f3f5;
-        --secondary: #a5d8ff;
-        --secondary-light: #e7f5ff;
-        --secondary-dark: #4dabf7;
-        --tertiary: #ffd8a8;
-        --tertiary-light: #fff4e6;
-        --tertiary-dark: #ffa94d;
-        --background-1: #fff;
-        --background-2: #444;
-        --accent-1: #f1f1f1;
-        --accent-2: #aaa;
-        --text-dark: #444;
-        --text-light: #fff;
-        --border: #444;
+        --body-background: var(--oc-gray-0);
+        --background-light: var(--oc-white);
+        --background-dark: var(--oc-gray-9);
+        --primary: var(--oc-blue-4);
+        --primary-light: var(--oc-blue-0);
+        --primary-dark: var(--oc-blue-8);
+        --secondary: var(--oc-orange-4);
+        --secondary-light: var(--oc-orange-0);
+        --secondary-dark: var(--oc-orange-8);
+        --text-dark: var(--oc-gray-9);
+        --text-color: var(--oc-white);
+        --text-light: var(--oc-white);
+        --border: var(--oc-gray-6);
+        --disabled: var(--oc-gray-2);
         --rounded-radius: 4px;
         --padding: 8px;
         --padding-narrow: 4px;
-        --padding-wide: 32px;
+        --padding-wide: 16px;
+        --font-size-large: 1.25em;
         --font-size: 1em;
         --font-size-small: 0.75em;
         --font-size-h1: 2em;
@@ -37,7 +38,7 @@ style {
         display: flex;
         min-height: 100vh;
         width: 100%;
-        background-color: var(--primary);
+        background-color: var(--body-background);
         color: var(--text-dark);
     }
 
@@ -86,14 +87,24 @@ style {
         color: var(--text-dark);
     }
 
-    .ui-element.filled {
-        background-color: var(--primary);
+    .ui-element.filled, .ui-element.filled.light {
+        background-color: var(--background-light);
         color: var(--text-dark);
     }
 
-    .ui-element.accent, .ui-element.secondary {
-        background-color: var(--secondary);
+    .ui-element.filled.dark {
+        background-color: var(--background-dark);
         color: var(--text-light);
+    }
+
+    .ui-element.primary {
+        background-color: var(--primary);
+        color: var(--text-color);
+    }
+
+    .ui-element.secondary {
+        background-color: var(--secondary);
+        color: var(--text-color);
     }
 
     .ui-element.rounded {

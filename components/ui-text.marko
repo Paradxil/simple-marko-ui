@@ -4,5 +4,10 @@ style {
     }
 }
 
-ui-element.ui-text tag="p"||input.tag ...input class=input.class
+ui-element.ui-text [
+    tag="p"||input.tag 
+    ...input 
+    class=input.class
+    style={'font-size': input.large?'var(--font-size-large)':'var(--font-size)'}
+    ]
     <${input.renderBody}/>

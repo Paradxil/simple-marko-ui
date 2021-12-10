@@ -7,17 +7,16 @@ class Component {
         }
 
         // Check for these keywords in the input and add them to the class list if present
-        this.keywords = ["labeled", "light", "dark", "disabled", "filled", "rounded", "accent", "secondary", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow", "hidden", "raised", "outlined", "fullscreen"];
+        this.keywords = ["labeled", "light", "dark", "disabled", "filled", "rounded", "primary", "secondary", "padded", "centered", "fullwidth", "alignleft", "alignright", "paddedwide", "paddednarrow", "hidden", "raised", "outlined", "fullscreen"];
     }
     onInput(input) {
-        let classes = [input.class||null];
-        classes.push("ui-element");
+        this.state.classes = [input.class||null];
+        this.state.classes.push("ui-element");
         for(let word of this.keywords) {
             if(input[word]||false === true) {
-                classes.push(word);
+                this.state.classes.push(word);
             }
         }
-        this.state.classes = classes;
     }
 };
 

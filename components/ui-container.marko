@@ -22,14 +22,5 @@ style {
     }
 }
 
-// Check for these keywords in the input and add them to the class list if present
-$ const keywords = ["centered", "placecenter", "aligncenter", "fillspace"];
-$ let classes = [input.class||null];
-$ for(let word of keywords) {
-    if(input[word]||false === true) {
-        classes.push(word);
-    }
-}
-
-ui-element.ui-container ...input class=classes id=input.id on-click("handleClick")
+ui-element.ui-container ...input class=state.classes id=input.id on-click("handleClick")
     <${input.renderBody}/>

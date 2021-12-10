@@ -5,13 +5,17 @@ class {
         };
     }
     onItemSelected(event) {
-        this.state.currentPage = event.index;
+        this.state.currentPage = Math.max(event.index - 1, 0);
     } 
 }
 
 ui-linear-layout gutter="0px" fillspace
     @element
-        ui-sidebar on-itemclick("onItemSelected") selected=state.currentPage collapsible
+        ui-sidebar on-itemclick("onItemSelected") selected=(state.currentPage+1) collapsible
+            @item
+                ui-text large secondary paddedwide centered -- ui-simple-marko
+                @collapsed
+                    ui-text large secondary paddedwide centered -- ui
             @item text="Overview" icon="box"
             @item text="Button" icon="square"
             @item text="Form" icon="layout"
@@ -19,12 +23,21 @@ ui-linear-layout gutter="0px" fillspace
             @item text="Container"
     @element fillspace
         ui-container padded aligncenter fillspace
-            ui-pageview page=state.currentPage
+            ui-pageview page=(state.currentPage)
                 @page
                     ui-heading -- OVERVIEW
                 @page
                     ui-heading -- BUTTON
+                    ui-style-scope
+                        ui-button text='Click Me!' trailingicon='arrow-right'
                 @page
                     ui-heading -- FORM
                 @page
                     ui-heading -- LIST
+                    ui-list
+                        for|i| from=0 to=100
+                            @item padded
+                                div style={display: 'flex', padding: '20px', borderRadius: '5px', backgroundColor: '#fff'}
+                                    p -- THIS IS A TEST
+                                    ui-icon icon='check'
+                                    ui-icon icon='check'
